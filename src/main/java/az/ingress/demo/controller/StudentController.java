@@ -4,6 +4,7 @@ import az.ingress.demo.model.Student;
 import az.ingress.demo.service.StudentService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,18 +13,26 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class StudentController {
 
-//    @Autowired
+    @Autowired
     private final ModelMapper modelMapper;
-    private final StudentService studentService;
+    @Autowired
+    private final StudentService studentServiceImpl2;
 
-    @GetMapping
+//    public StudentController(ModelMapper modelMapper, StudentService studentService) {
+//        this.modelMapper = modelMapper;
+//        this.studentService = studentService;
+//    }
+
+
+    @GetMapping("{id}")
     public Student getStudentById(@PathVariable int id) {
-        return studentService.getStudentByid(id);
+        System.out.println(studentServiceImpl2);
+        return studentServiceImpl2.getStudentById(id);
     }
 
     @PostMapping
     public String saveStudent(@RequestBody Student student) {
-        StudentService studentService = modelMapper.map(student, StudentService);
+        studentServiceImpl2.save(student);
         return "Student inserted to db with name: " + student.getName();
     }
 
