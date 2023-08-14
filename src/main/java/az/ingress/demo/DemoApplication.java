@@ -1,9 +1,9 @@
 package az.ingress.demo;
 
-import az.ingress.demo.controller.StudentController;
-import az.ingress.demo.dto.StudentDto;
-import az.ingress.demo.model.Student;
-import az.ingress.demo.service.StudentService;
+import az.ingress.demo.controller.TeacherController;
+import az.ingress.demo.dto.TeacherDto;
+import az.ingress.demo.model.Teacher;
+import az.ingress.demo.service.TeacherService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,9 +17,9 @@ public class DemoApplication implements CommandLineRunner {
 	@Autowired
 	ApplicationContext applicationContext;
 	@Autowired
-	StudentService studentServiceImpl;
+	TeacherService teacherServiceImpl;
 	@Autowired
-	StudentController studentController;
+	TeacherController teacherController;
 	@Autowired
 	ModelMapper modelMapper;
 
@@ -34,23 +34,23 @@ public class DemoApplication implements CommandLineRunner {
 //			System.out.println(s);
 //		}
 
-		studentServiceImpl.save(new Student(1, "Senan", "Senanov", 27));
+		teacherServiceImpl.save(new Teacher(1, "Senan", "Senanov", 27));
 
 		try {
-			Student student = studentServiceImpl.getStudentById(1);
-			StudentDto studentDto = StudentDto.builder()
-					.age(student.getAge())
-					.name(student.getName())
-					.surname(student.getSurname())
+			Teacher teacher = teacherServiceImpl.getTeacherById(1);
+			TeacherDto teacherDto = TeacherDto.builder()
+					.age(teacher.getAge())
+					.name(teacher.getName())
+					.surname(teacher.getSurname())
 					.build();
 //			StudentDto studentDto = modelMapper.map(student, StudentDto.class);
-			System.out.println(studentDto);
+			System.out.println(teacherDto);
 		} catch (Exception e) {
 			System.out.println("Exception: " + e.getLocalizedMessage());
 		}
 
-		System.out.println(studentServiceImpl);
+		System.out.println(teacherServiceImpl);
 		System.out.println("------");
-		System.out.println(studentController.getStudentById(1));
+		System.out.println(teacherController.getStudentById(1));
 	}
 }

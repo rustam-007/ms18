@@ -1,7 +1,7 @@
 package az.ingress.demo.controller;
 
-import az.ingress.demo.model.Student;
-import az.ingress.demo.service.StudentService;
+import az.ingress.demo.model.Teacher;
+import az.ingress.demo.service.TeacherService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/student")
 //@RequiredArgsConstructor only final variables
 @AllArgsConstructor
-public class StudentController {
+public class TeacherController {
 
     @Autowired
     private final ModelMapper modelMapper;
     @Autowired
-    private final StudentService studentServiceImpl2;
+    private final TeacherService teacherServiceImpl2;
 
 //    public StudentController(ModelMapper modelMapper, StudentService studentService) {
 //        this.modelMapper = modelMapper;
@@ -25,22 +25,22 @@ public class StudentController {
 
 
     @GetMapping("{id}")
-    public Student getStudentById(@PathVariable int id) {
-        System.out.println(studentServiceImpl2);
-        return studentServiceImpl2.getStudentById(id);
+    public Teacher getStudentById(@PathVariable int id) {
+        System.out.println(teacherServiceImpl2);
+        return teacherServiceImpl2.getTeacherById(id);
     }
 
     @PostMapping
-    public String saveStudent(@RequestBody Student student) {
-        studentServiceImpl2.save(student);
-        return "Student inserted to db with name: " + student.getName();
+    public String saveStudent(@RequestBody Teacher teacher) {
+        teacherServiceImpl2.save(teacher);
+        return "Student inserted to db with name: " + teacher.getName();
     }
 
     @PutMapping
-    public Integer updateStudent (@RequestBody Student student) {
-        student.setName("Kamil");
-        System.out.println(student);
-        return student.getId();
+    public Integer updateStudent (@RequestBody Teacher teacher) {
+        teacher.setName("Kamil");
+        System.out.println(teacher);
+        return teacher.getId();
     }
 
     @DeleteMapping
