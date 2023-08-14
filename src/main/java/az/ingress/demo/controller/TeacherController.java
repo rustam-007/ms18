@@ -18,33 +18,32 @@ public class TeacherController {
     @Autowired
     private final TeacherService teacherServiceImpl2;
 
-//    public StudentController(ModelMapper modelMapper, StudentService studentService) {
+//    public TeacherController(ModelMapper modelMapper, TeacherService teacherService) {
 //        this.modelMapper = modelMapper;
-//        this.studentService = studentService;
+//        this.teacherService = teacherService;
 //    }
 
 
     @GetMapping("{id}")
-    public Teacher getStudentById(@PathVariable int id) {
+    public Teacher getTeacherById(@PathVariable int id) {
         System.out.println(teacherServiceImpl2);
         return teacherServiceImpl2.getTeacherById(id);
     }
 
     @PostMapping
-    public String saveStudent(@RequestBody Teacher teacher) {
-        teacherServiceImpl2.save(teacher);
-        return "Student inserted to db with name: " + teacher.getName();
+    public String saveTeacher(@RequestBody Teacher teacher) {
+        teacherServiceImpl2.saveTeacher(teacher);
+        return "Teacher inserted to db with name: " + teacher.getName();
     }
 
     @PutMapping
-    public Integer updateStudent (@RequestBody Teacher teacher) {
-        teacher.setName("Kamil");
-        System.out.println(teacher);
-        return teacher.getId();
+    public String updateTeacher(@PathVariable int id, @RequestBody Teacher teacher) {
+        teacherServiceImpl2.updateTeacher(id, teacher);
+        return "Teacher with id:" + id + " was updated";
     }
 
     @DeleteMapping
-    public String deleteStudent (@RequestParam(value = "id") int id) {
-        return "Student with id: " + id + " was deleted";
+    public String deleteTeacher(@RequestParam(value = "id") int id) {
+        return "Teacher with id: " + id + " was deleted";
     }
 }

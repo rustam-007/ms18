@@ -17,7 +17,20 @@ public class TeacherServiceImpl2 implements TeacherService {
         return teacherRepository.findById(id).get();
     }
 
-    public void save(Teacher teacher) {
+    public void saveTeacher(Teacher teacher) {
         teacherRepository.save(teacher);
+    }
+
+    @Override
+    public void updateTeacher(int id, Teacher teacher) {
+        Teacher teacher1 = teacherRepository.findById(id).get();
+        teacher1.setAge(teacher.getAge());
+        teacher1.setName(teacher.getName());
+        teacher1.setSurname(teacher.getSurname());
+    }
+
+    @Override
+    public void deleteTeacher(int id) {
+        teacherRepository.deleteById(id);
     }
 }

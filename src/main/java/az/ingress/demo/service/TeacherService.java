@@ -7,5 +7,9 @@ public interface TeacherService {
 
     Teacher getTeacherById(int id);
 
-    void save(Teacher teacher);
+    void saveTeacher(Teacher teacher);
+
+    void updateTeacher(int id, Teacher teacher);
+
+    void deleteTeacher(int id);
 }

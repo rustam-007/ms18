@@ -34,7 +34,7 @@ public class DemoApplication implements CommandLineRunner {
 //			System.out.println(s);
 //		}
 
-		teacherServiceImpl.save(new Teacher(1, "Senan", "Senanov", 27));
+		teacherServiceImpl.saveTeacher(new Teacher(1, "Senan", "Senanov", 27, "Physics", 5000));
 
 		try {
 			Teacher teacher = teacherServiceImpl.getTeacherById(1);
@@ -51,6 +51,6 @@ public class DemoApplication implements CommandLineRunner {
 
 		System.out.println(teacherServiceImpl);
 		System.out.println("------");
-		System.out.println(teacherController.getStudentById(1));
+		System.out.println(teacherController.getTeacherById(1));
 	}
 }

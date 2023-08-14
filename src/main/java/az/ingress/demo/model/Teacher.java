@@ -20,6 +20,8 @@ public class Teacher {
     String name;
     String surname;
     int age;
+    String subject;
+    int salary;
 
 /*    public Student(String name, String surname, int age) {
         this.name = name;
